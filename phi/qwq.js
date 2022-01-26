@@ -1,78 +1,78 @@
 "use strict";
-const _i = ['Phigros模拟器', [1, 4, 13, "f1"], 1611795955, 1639811662];
+const _i = ['Phigros模拟器', [1, 4, 13,"f1"], 1611795955, 1639811662];
 document.oncontextmenu = e => e.preventDefault(); //qwq
 for (const i of document.getElementById("view-nav").children) {
-    i.addEventListener("click", function() {
-        for (const j of this.parentElement.children) j.classList.remove("active");
-        const doc = document.getElementById("view-doc");
-        const msg = document.getElementById("view-msg");
-        this.classList.add("active");
-        if (i.id == "msg") {
-            doc.src = "";
-            doc.classList.add("hide");
-            msg.classList.remove("hide");
-        } else {
-            if (doc.getAttribute("src") != `docs/${i.id}.html`) doc.src = `docs/${i.id}.html`;
-            msg.classList.add("hide");
-            doc.classList.remove("hide");
-        }
-    });
+	i.addEventListener("click", function() {
+		for (const j of this.parentElement.children) j.classList.remove("active");
+		const doc = document.getElementById("view-doc");
+		const msg = document.getElementById("view-msg");
+		this.classList.add("active");
+		if (i.id == "msg") {
+			doc.src = "";
+			doc.classList.add("hide");
+			msg.classList.remove("hide");
+		} else {
+			if (doc.getAttribute("src") != `docs/${i.id}.html`) doc.src = `docs/${i.id}.html`;
+			msg.classList.add("hide");
+			doc.classList.remove("hide");
+		}
+	});
 }
 document.getElementById("cover-dark").addEventListener("click", () => {
-    document.getElementById("cover-dark").classList.add("fade");
-    document.getElementById("cover-view").classList.add("fade");
+	document.getElementById("cover-dark").classList.add("fade");
+	document.getElementById("cover-view").classList.add("fade");
 });
 document.getElementById("qwq").addEventListener("click", () => {
-    document.getElementById("cover-dark").classList.remove("fade");
-    document.getElementById("cover-view").classList.remove("fade");
-    document.getElementById("res").click();
+	document.getElementById("cover-dark").classList.remove("fade");
+	document.getElementById("cover-view").classList.remove("fade");
+	document.getElementById("res").click();
 });
 document.getElementById("msg-out").addEventListener("click", () => {
-    document.getElementById("cover-dark").classList.remove("fade");
-    document.getElementById("cover-view").classList.remove("fade");
-    document.getElementById("msg").click();
+	document.getElementById("cover-dark").classList.remove("fade");
+	document.getElementById("cover-view").classList.remove("fade");
+	document.getElementById("msg").click();
 });
 const message = {
-        out: document.getElementById("msg-out"),
-        view: document.getElementById("view-msg"),
-        lastMessage: "",
-        isError: false,
-        get num() {
-            return this.view.querySelectorAll(".msgbox").length;
-        },
-        sendMessage(msg) {
-            const num = this.num;
-            this.out.className = num ? "warning" : "accept";
-            this.out.innerText = msg + (num ? `（发现${num}个问题，点击查看）` : "");
-            this.lastMessage = msg;
-            this.isError = false;
-        },
-        sendWarning(msg) {
-            const msgbox = document.createElement("div");
-            msgbox.innerText = msg;
-            msgbox.classList.add("msgbox");
-            const btn = document.createElement("a");
-            btn.innerText = "忽略";
-            btn.style.float = "right";
-            btn.onclick = () => {
-                msgbox.remove();
-                if (this.isError) this.sendError(this.lastMessage);
-                else this.sendMessage(this.lastMessage);
-            }
-            msgbox.appendChild(btn);
-            this.view.appendChild(msgbox);
-            if (this.isError) this.sendError(this.lastMessage);
-            else this.sendMessage(this.lastMessage);
-        },
-        sendError(msg) {
-            const num = this.num;
-            this.out.className = "error";
-            this.out.innerText = msg + (num ? `（发现${num}个问题，点击查看）` : "");
-            this.lastMessage = msg;
-            this.isError = true;
-        }
-    }
-    //
+	out: document.getElementById("msg-out"),
+	view: document.getElementById("view-msg"),
+	lastMessage: "",
+	isError: false,
+	get num() {
+		return this.view.querySelectorAll(".msgbox").length;
+	},
+	sendMessage(msg) {
+		const num = this.num;
+		this.out.className = num ? "warning" : "accept";
+		this.out.innerText = msg + (num ? `（发现${num}个问题，点击查看）` : "");
+		this.lastMessage = msg;
+		this.isError = false;
+	},
+	sendWarning(msg) {
+		const msgbox = document.createElement("div");
+		msgbox.innerText = msg;
+		msgbox.classList.add("msgbox");
+		const btn = document.createElement("a");
+		btn.innerText = "忽略";
+		btn.style.float = "right";
+		btn.onclick = () => {
+			msgbox.remove();
+			if (this.isError) this.sendError(this.lastMessage);
+			else this.sendMessage(this.lastMessage);
+		}
+		msgbox.appendChild(btn);
+		this.view.appendChild(msgbox);
+		if (this.isError) this.sendError(this.lastMessage);
+		else this.sendMessage(this.lastMessage);
+	},
+	sendError(msg) {
+		const num = this.num;
+		this.out.className = "error";
+		this.out.innerText = msg + (num ? `（发现${num}个问题，点击查看）` : "");
+		this.lastMessage = msg;
+		this.isError = true;
+	}
+}
+//
 const upload = document.getElementById("upload");
 const uploads = document.getElementById("uploads");
 const mask = document.getElementById("mask");
@@ -109,47 +109,47 @@ const ctx = canvas.getContext("2d"); //游戏界面(alpha:false会出现兼容�
 const canvasos = document.createElement("canvas"); //用于绘制游戏主界面
 const ctxos = canvasos.getContext("2d");
 const Renderer = { //存放谱面
-    chart: null,
-    bgImage: null,
-    bgImageBlur: null,
-    bgMusic: null,
-    lines: [],
-    notes: [],
-    taps: [],
-    drags: [],
-    flicks: [],
-    holds: [],
-    reverseholds: [],
-    tapholds: []
+	chart: null,
+	bgImage: null,
+	bgImageBlur: null,
+	bgMusic: null,
+	lines: [],
+	notes: [],
+	taps: [],
+	drags: [],
+	flicks: [],
+	holds: [],
+	reverseholds: [],
+	tapholds: []
 };
 //全屏相关
 const full = {
-    toggle(elem) {
-        if (!this.enabled) return false;
-        if (this.element) {
-            if (document.exitFullscreen) return document.exitFullscreen();
-            if (document.cancelFullScreen) return document.cancelFullScreen();
-            if (document.webkitCancelFullScreen) return document.webkitCancelFullScreen();
-            if (document.mozCancelFullScreen) return document.mozCancelFullScreen();
-            if (document.msExitFullscreen) return document.msExitFullscreen();
-        } else {
-            if (!(elem instanceof HTMLElement)) elem = document.body;
-            if (elem.requestFullscreen) return elem.requestFullscreen();
-            if (elem.webkitRequestFullscreen) return elem.webkitRequestFullscreen();
-            if (elem.mozRequestFullScreen) return elem.mozRequestFullScreen();
-            if (elem.msRequestFullscreen) return elem.msRequestFullscreen();
-        }
-    },
-    check(elem) {
-        if (!(elem instanceof HTMLElement)) elem = document.body;
-        return this.element == elem;
-    },
-    get element() {
-        return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
-    },
-    get enabled() {
-        return !!(document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled);
-    }
+	toggle(elem) {
+		if (!this.enabled) return false;
+		if (this.element) {
+			if (document.exitFullscreen) return document.exitFullscreen();
+			if (document.cancelFullScreen) return document.cancelFullScreen();
+			if (document.webkitCancelFullScreen) return document.webkitCancelFullScreen();
+			if (document.mozCancelFullScreen) return document.mozCancelFullScreen();
+			if (document.msExitFullscreen) return document.msExitFullscreen();
+		} else {
+			if (!(elem instanceof HTMLElement)) elem = document.body;
+			if (elem.requestFullscreen) return elem.requestFullscreen();
+			if (elem.webkitRequestFullscreen) return elem.webkitRequestFullscreen();
+			if (elem.mozRequestFullScreen) return elem.mozRequestFullScreen();
+			if (elem.msRequestFullscreen) return elem.msRequestFullscreen();
+		}
+	},
+	check(elem) {
+		if (!(elem instanceof HTMLElement)) elem = document.body;
+		return this.element == elem;
+	},
+	get element() {
+		return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+	},
+	get enabled() {
+		return !!(document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled);
+	}
 };
 //兼容性检测
 if (typeof zip != "object") message.sendWarning("检测到zip组件未正常加载，将无法使用模拟器");
@@ -158,27 +158,27 @@ if (!(window.AudioContext || window.webkitAudioContext)) message.sendWarning("�
 if (!full.enabled) message.sendWarning("检测到当前浏览器不支持全屏，播放时双击右下角将无反应");
 //qwq
 selectbg.onchange = () => {
-        Renderer.bgImage = bgs[selectbg.value];
-        Renderer.bgImageBlur = bgsBlur[selectbg.value];
-        resizeCanvas();
-    }
-    //自动填写歌曲信息
+	Renderer.bgImage = bgs[selectbg.value];
+	Renderer.bgImageBlur = bgsBlur[selectbg.value];
+	resizeCanvas();
+}
+//自动填写歌曲信息
 selectchart.addEventListener("change", adjustInfo);
 
 function adjustInfo() {
-    for (const i of chartInfoData) {
-        if (selectchart.value == i.Chart) {
-            if (bgms[i.Music]) selectbgm.value = i.Music;
-            if (bgs[i.Image]) selectbg.value = i.Image;
-            if (!!Number(i.AspectRatio)) selectaspectratio.value = i.AspectRatio;
-            if (!!Number(i.ScaleRatio)) selectscaleratio.value = i.ScaleRatio;
-            if (!!Number(i.GlobalAlpha)) selectglobalalpha.value = i.GlobalAlpha;
-            inputName.value = i.Name;
-            inputLevel.value = i.Level;
-            inputIllustrator.value = i.Illustrator;
-            inputDesigner.value = i.Designer;
-        }
-    }
+	for (const i of chartInfoData) {
+		if (selectchart.value == i.Chart) {
+			if (bgms[i.Music]) selectbgm.value = i.Music;
+			if (bgs[i.Image]) selectbg.value = i.Image;
+			if (!!Number(i.AspectRatio)) selectaspectratio.value = i.AspectRatio;
+			if (!!Number(i.ScaleRatio)) selectscaleratio.value = i.ScaleRatio;
+			if (!!Number(i.GlobalAlpha)) selectglobalalpha.value = i.GlobalAlpha;
+			inputName.value = i.Name;
+			inputLevel.value = i.Level;
+			inputIllustrator.value = i.Illustrator;
+			inputDesigner.value = i.Designer;
+		}
+	}
 }
 window.addEventListener("resize", resizeCanvas);
 document.addEventListener("fullscreenchange", resizeCanvas);
@@ -186,481 +186,481 @@ selectscaleratio.addEventListener("change", resizeCanvas);
 selectaspectratio.addEventListener("change", resizeCanvas);
 //适应画面尺寸
 function resizeCanvas() {
-    const width = document.documentElement.clientWidth;
-    const height = document.documentElement.clientHeight;
-    const defaultWidth = Math.min(854, width * 0.8);
-    const defaultHeight = defaultWidth / (selectaspectratio.value || 16 / 9);
-    const realWidth = Math.floor(full.check(canvas) ? width : defaultWidth);
-    const realHeight = Math.floor(full.check(canvas) ? height : defaultHeight);
-    canvas.style.cssText += `;width:${realWidth}px;height:${realHeight}px`;
-    canvas.width = realWidth * devicePixelRatio;
-    canvas.height = realHeight * devicePixelRatio;
-    canvasos.width = Math.min(realWidth, realHeight * AspectRatio) * devicePixelRatio;
-    canvasos.height = realHeight * devicePixelRatio;
-    wlen = canvasos.width / 2;
-    hlen = canvasos.height / 2;
-    wlen2 = canvasos.width / 18;
-    hlen2 = canvasos.height * 0.6; //控制note流速
-    noteScale = canvasos.width / (selectscaleratio.value || 8e3); //note、特效缩放
-    lineScale = canvasos.width > canvasos.height * 0.75 ? canvasos.height / 18.75 : canvasos.width / 14.0625; //判定线、文字缩放
+	const width = document.documentElement.clientWidth;
+	const height = document.documentElement.clientHeight;
+	const defaultWidth = Math.min(854, width * 0.8);
+	const defaultHeight = defaultWidth / (selectaspectratio.value || 16 / 9);
+	const realWidth = Math.floor(full.check(canvas) ? width : defaultWidth);
+	const realHeight = Math.floor(full.check(canvas) ? height : defaultHeight);
+	canvas.style.cssText += `;width:${realWidth}px;height:${realHeight}px`;
+	canvas.width = realWidth * devicePixelRatio;
+	canvas.height = realHeight * devicePixelRatio;
+	canvasos.width = Math.min(realWidth, realHeight * AspectRatio) * devicePixelRatio;
+	canvasos.height = realHeight * devicePixelRatio;
+	wlen = canvasos.width / 2;
+	hlen = canvasos.height / 2;
+	wlen2 = canvasos.width / 18;
+	hlen2 = canvasos.height * 0.6; //控制note流速
+	noteScale = canvasos.width / (selectscaleratio.value || 8e3); //note、特效缩放
+	lineScale = canvasos.width > canvasos.height * 0.75 ? canvasos.height / 18.75 : canvasos.width / 14.0625; //判定线、文字缩放
 }
 //qwq[water,demo,democlick]
 const qwq = [true, false, 3, 0, 0];
 document.getElementById("demo").classList.add("hide");
 document.querySelector(".title").addEventListener("click", function() {
-    if (qwq[1]) qwq[0] = !qwq[0];
-    else if (!--qwq[2]) document.getElementById("demo").classList.remove("hide");
-    fucktemp2 && ++qwq[4] % 10 == 0 && statDelta.export();
+	if (qwq[1]) qwq[0] = !qwq[0];
+	else if (!--qwq[2]) document.getElementById("demo").classList.remove("hide");
+	fucktemp2 && ++qwq[4] % 10 == 0 && statDelta.export();
 });
 document.getElementById("demo").addEventListener("click", function() {
-    document.getElementById("demo").classList.add("hide");
-    uploads.classList.add("disabled");
-    const xhr = new XMLHttpRequest();
-    xhr.open("get", "./src/demo.png", true); //避免gitee的404
-    xhr.responseType = 'blob';
-    xhr.send();
-    xhr.onprogress = progress => { //显示加载文件进度
-        message.sendMessage(`加载文件：${Math.floor(progress.loaded / 5079057 * 100)}%`);
-    };
-    xhr.onload = () => {
-        document.getElementById("filename").value = "demo.zip";
-        loadFile(xhr.response);
-    };
+	document.getElementById("demo").classList.add("hide");
+	uploads.classList.add("disabled");
+	const xhr = new XMLHttpRequest();
+	xhr.open("get", "./src/demo.png", true); //避免gitee的404
+	xhr.responseType = 'blob';
+	xhr.send();
+	xhr.onprogress = progress => { //显示加载文件进度
+		message.sendMessage(`加载文件：${Math.floor(progress.loaded / 5079057 * 100)}%`);
+	};
+	xhr.onload = () => {
+		document.getElementById("filename").value = "demo.zip";
+		loadFile(xhr.response);
+	};
 });
 const mouse = {}; //存放鼠标事件(用于检测，下同)
 const touch = {}; //存放触摸事件
 const keyboard = {}; //存放键盘事件
 const taps = []; //额外处理tap(试图修复吃音bug)
 const specialClick = {
-    time: [0, 0, 0, 0],
-    func: [() => {
-        btnPause.click();
-    }, () => {
-        btnPlay.click();
-        btnPlay.click();
-    }, () => void 0, () => {
-        full.toggle(canvas);
-    }],
-    click(id) {
-        const now = Date.now();
-        if (now - this.time[id] < 300) this.func[id]();
-        this.time[id] = now;
-    }
+	time: [0, 0, 0, 0],
+	func: [() => {
+		btnPause.click();
+	}, () => {
+		btnPlay.click();
+		btnPlay.click();
+	}, () => void 0, () => {
+		full.toggle(canvas);
+	}],
+	click(id) {
+		const now = Date.now();
+		if (now - this.time[id] < 300) this.func[id]();
+		this.time[id] = now;
+	}
 }
 class Click {
-    constructor(offsetX, offsetY) {
-        this.offsetX = Number(offsetX);
-        this.offsetY = Number(offsetY);
-        this.isMoving = false;
-        this.time = 0;
-    }
-    static activate(offsetX, offsetY) {
-        taps.push(new Click(offsetX, offsetY));
-        if (offsetX < lineScale * 1.5 && offsetY < lineScale * 1.5) specialClick.click(0);
-        if (offsetX > canvasos.width - lineScale * 1.5 && offsetY < lineScale * 1.5) specialClick.click(1);
-        if (offsetX < lineScale * 1.5 && offsetY > canvasos.height - lineScale * 1.5) specialClick.click(2);
-        if (offsetX > canvasos.width - lineScale * 1.5 && offsetY > canvasos.height - lineScale * 1.5) specialClick.click(3);
-        if (qwqEnd.second > 0) qwq[3] = qwq[3] > 0 ? -qwqEnd.second : qwqEnd.second;
-        return new Click(offsetX, offsetY);
-    }
-    move(offsetX, offsetY) {
-        this.offsetX = Number(offsetX);
-        this.offsetY = Number(offsetY);
-        this.isMoving = true;
-        this.time = 0;
-    }
-    animate() {
-        if (!this.time++) {
-            if (this.isMoving) clickEvents0.push(ClickEvent0.getClickMove(this.offsetX, this.offsetY));
-            else clickEvents0.push(ClickEvent0.getClickTap(this.offsetX, this.offsetY));
-        } else clickEvents0.push(ClickEvent0.getClickHold(this.offsetX, this.offsetY));
-    }
+	constructor(offsetX, offsetY) {
+		this.offsetX = Number(offsetX);
+		this.offsetY = Number(offsetY);
+		this.isMoving = false;
+		this.time = 0;
+	}
+	static activate(offsetX, offsetY) {
+		taps.push(new Click(offsetX, offsetY));
+		if (offsetX < lineScale * 1.5 && offsetY < lineScale * 1.5) specialClick.click(0);
+		if (offsetX > canvasos.width - lineScale * 1.5 && offsetY < lineScale * 1.5) specialClick.click(1);
+		if (offsetX < lineScale * 1.5 && offsetY > canvasos.height - lineScale * 1.5) specialClick.click(2);
+		if (offsetX > canvasos.width - lineScale * 1.5 && offsetY > canvasos.height - lineScale * 1.5) specialClick.click(3);
+		if (qwqEnd.second > 0) qwq[3] = qwq[3] > 0 ? -qwqEnd.second : qwqEnd.second;
+		return new Click(offsetX, offsetY);
+	}
+	move(offsetX, offsetY) {
+		this.offsetX = Number(offsetX);
+		this.offsetY = Number(offsetY);
+		this.isMoving = true;
+		this.time = 0;
+	}
+	animate() {
+		if (!this.time++) {
+			if (this.isMoving) clickEvents0.push(ClickEvent0.getClickMove(this.offsetX, this.offsetY));
+			else clickEvents0.push(ClickEvent0.getClickTap(this.offsetX, this.offsetY));
+		} else clickEvents0.push(ClickEvent0.getClickHold(this.offsetX, this.offsetY));
+	}
 }
 class Judgement {
-    constructor(offsetX, offsetY, type) {
-        this.offsetX = Number(offsetX);
-        this.offsetY = Number(offsetY);
-        this.type = Number(type) || 0; //1-Tap,2-Hold,3-Move
-        this.catched = false;
-    }
-    isInArea(x, y, cosr, sinr, hw) {
-        return isNaN(this.offsetX + this.offsetY) ? true : Math.abs((this.offsetX - x) * cosr + (this.offsetY - y) * sinr) <= hw;
-    }
+	constructor(offsetX, offsetY, type) {
+		this.offsetX = Number(offsetX);
+		this.offsetY = Number(offsetY);
+		this.type = Number(type) || 0; //1-Tap,2-Hold,3-Move
+		this.catched = false;
+	}
+	isInArea(x, y, cosr, sinr, hw) {
+		return isNaN(this.offsetX + this.offsetY) ? true : Math.abs((this.offsetX - x) * cosr + (this.offsetY - y) * sinr) <= hw;
+	}
 }
 const statDelta = {
-    list: [],
-    reset() {
-        this.list.length = 0;
-    },
-    push(num) {
-        let n = Math.trunc(num * 1000) + 1 - 1;
-        this.list.push(n);
-        console.log(n);
-    },
-    export () {
-        const awa = {};
-        for (const i of statDelta.list) awa[i] = awa[i] ? awa[i] + 1 : 1
-        window.prompt("Copy the text here:", JSON.stringify(awa));
-    }
+	list: [],
+	reset() {
+		this.list.length = 0;
+	},
+	push(num) {
+		let n = Math.trunc(num * 1000) + 1 - 1;
+		this.list.push(n);
+		console.log(n);
+	},
+	export () {
+		const awa = {};
+		for (const i of statDelta.list) awa[i] = awa[i] ? awa[i] + 1 : 1
+		window.prompt("Copy the text here:", JSON.stringify(awa));
+	}
 };
 class Judgements extends Array {
-    addJudgement(notes, realTime) {
-        this.length = 0;
-        if (autoplay.checked) {
-            for (const i of notes) {
-                const deltaTime = i.realTime - realTime;
-                if (i.scored) continue;
-                if (i.type == 1) {
-                    if (deltaTime < 0.0) this.push(new Judgement(i.offsetX, i.offsetY, 1));
-                } else if (i.type == 2) {
-                    if (deltaTime < 0.2) this.push(new Judgement(i.offsetX, i.offsetY, 2));
-                } else if (i.type == 3) {
-                    if (i.status3) this.push(new Judgement(i.offsetX, i.offsetY, 2));
-                    else if (deltaTime < 0.0) this.push(new Judgement(i.offsetX, i.offsetY, 1));
-                } else if (i.type == 4) {
-                    if (deltaTime < 0.2) this.push(new Judgement(i.offsetX, i.offsetY, 3));
-                }
-            }
-        } else if (!isPaused) {
-            for (const j in mouse) {
-                const i = mouse[j];
-                if (i instanceof Click) {
-                    if (i.time) this.push(new Judgement(i.offsetX, i.offsetY, 2));
-                    else if (i.isMoving) this.push(new Judgement(i.offsetX, i.offsetY, 3));
-                    //else this.push(new Judgement(i.offsetX, i.offsetY, 1));
-                }
-            }
-            for (const j in touch) {
-                const i = touch[j];
-                if (i instanceof Click) {
-                    if (i.time) this.push(new Judgement(i.offsetX, i.offsetY, 2));
-                    else if (i.isMoving) this.push(new Judgement(i.offsetX, i.offsetY, 3));
-                    //else this.push(new Judgement(i.offsetX, i.offsetY, 1));
-                }
-            }
-            for (const j in keyboard) {
-                const i = keyboard[j];
-                if (i instanceof Click) {
-                    if (i.time) this.push(new Judgement(i.offsetX, i.offsetY, 2));
-                    else /*if (i.isMoving)*/ this.push(new Judgement(i.offsetX, i.offsetY, 3));
-                    //else this.push(new Judgement(i.offsetX, i.offsetY, 1));
-                }
-            }
-            for (const i of taps) {
-                if (i instanceof Click) this.push(new Judgement(i.offsetX, i.offsetY, 1));
-            }
-        }
-    };
-    judgeNote(notes, realTime, width) {
-        for (const i of notes) {
-            const deltaTime = i.realTime - realTime;
-            if (i.scored) continue;
-            if ((deltaTime < -(hyperMode.checked ? 0.12 : 0.16) && i.frameCount > (hyperMode.checked ? 3 : 4)) && !i.status2) {
-                //console.log("Miss", i.name);
-                i.status = 2;
-                stat.addCombo(2, i.type);
-                statDelta.push(NaN);
-                i.scored = true;
-            } else if (i.type == 1) {
-                for (let j = 0; j < this.length; j++) {
-                    if (this[j].type == 1 && this[j].isInArea(i.offsetX, i.offsetY, i.cosr, i.sinr, width) && deltaTime < 0.2 && (deltaTime > -(hyperMode.checked ? 0.12 : 0.16) || i.frameCount < (hyperMode.checked ? 3 : 4))) {
-                        if (deltaTime > (hyperMode.checked ? 0.12 : 0.16)) {
-                            if (!this[j].catched) {
-                                i.status = 6; //console.log("Bad", i.name);
-                                i.badtime = Date.now();
-                            }
-                        } else if (deltaTime > 0.08) {
-                            i.status = 7; //console.log("Good(Early)", i.name);
-                            if (document.getElementById("hitSong").checked) playSound(res["HitSong0"], false, true, 0);
-                            clickEvents1.push(ClickEvent1.getClickGood(i.projectX, i.projectY));
-                        } else if (deltaTime > 0.04) {
-                            i.status = 5; //console.log("Perfect(Early)", i.name);
-                            if (document.getElementById("hitSong").checked) playSound(res["HitSong0"], false, true, 0);
-                            clickEvents1.push(hyperMode.checked ? ClickEvent1.getClickGreat(i.projectX, i.projectY) : ClickEvent1.getClickPerfect(i.projectX, i.projectY));
-                        } else if (deltaTime > -0.04 || i.frameCount < 1) {
-                            i.status = 4; //console.log("Perfect(Max)", i.name);
-                            if (document.getElementById("hitSong").checked) playSound(res["HitSong0"], false, true, 0);
-                            clickEvents1.push(ClickEvent1.getClickPerfect(i.projectX, i.projectY));
-                        } else if (deltaTime > -0.08 || i.frameCount < 2) {
-                            i.status = 1; //console.log("Perfect(Late)", i.name);
-                            if (document.getElementById("hitSong").checked) playSound(res["HitSong0"], false, true, 0);
-                            clickEvents1.push(hyperMode.checked ? ClickEvent1.getClickGreat(i.projectX, i.projectY) : ClickEvent1.getClickPerfect(i.projectX, i.projectY));
-                        } else {
-                            i.status = 3; //console.log("Good(Late)", i.name);
-                            if (document.getElementById("hitSong").checked) playSound(res["HitSong0"], false, true, 0);
-                            clickEvents1.push(ClickEvent1.getClickGood(i.projectX, i.projectY));
-                        }
-                        if (i.status) {
-                            stat.addCombo(i.status, 1);
-                            statDelta.push(deltaTime);
-                            i.scored = true;
-                            this.splice(j, 1);
-                            break;
-                        }
-                    }
-                }
-            } else if (i.type == 2) {
-                if (i.status == 4 && deltaTime < 0) {
-                    if (document.getElementById("hitSong").checked) playSound(res["HitSong1"], false, true, 0);
-                    clickEvents1.push(ClickEvent1.getClickPerfect(i.projectX, i.projectY));
-                    stat.addCombo(4, 2);
-                    statDelta.push(0);
-                    i.scored = true;
-                } else if (!i.status) {
-                    for (let j = 0; j < this.length; j++) {
-                        if (this[j].isInArea(i.offsetX, i.offsetY, i.cosr, i.sinr, width) && deltaTime < (hyperMode.checked ? 0.12 : 0.16) && (deltaTime > -(hyperMode.checked ? 0.12 : 0.16) || i.frameCount < (hyperMode.checked ? 3 : 4))) {
-                            //console.log("Perfect", i.name);
-                            this[j].catched = true;
-                            i.status = 4;
-                            break;
-                        }
-                    }
-                }
-            } else if (i.type == 3) {
-                if (i.status3) {
-                    if ((Date.now() - i.status3) * i.holdTime >= 1.6e4 * i.realHoldTime) { //间隔时间与bpm成反比，待实测
-                        if (i.status2 % 4 == 0) clickEvents1.push(ClickEvent1.getClickPerfect(i.projectX, i.projectY));
-                        else if (i.status2 % 4 == 1) clickEvents1.push(hyperMode.checked ? ClickEvent1.getClickGreat(i.projectX, i.projectY) : ClickEvent1.getClickPerfect(i.projectX, i.projectY));
-                        else if (i.status2 % 4 == 3) clickEvents1.push(ClickEvent1.getClickGood(i.projectX, i.projectY));
-                        i.status3 = Date.now();
-                    }
-                    if (deltaTime + i.realHoldTime < 0.2) {
-                        if (!i.status) {
-                            stat.addCombo(i.status = i.status2, 3);
-                            statDelta.push(i.status5);
-                        }
-                        if (deltaTime + i.realHoldTime < 0) i.scored = true;
-                        continue;
-                    }
-                }
-                i.status4 = true;
-                for (let j = 0; j < this.length; j++) {
-                    if (!i.status3) {
-                        if (this[j].type == 1 && this[j].isInArea(i.offsetX, i.offsetY, i.cosr, i.sinr, width) && deltaTime < (hyperMode.checked ? 0.12 : 0.16) && (deltaTime > -(hyperMode.checked ? 0.12 : 0.16) || i.frameCount < (hyperMode.checked ? 3 : 4))) {
-                            if (document.getElementById("hitSong").checked) playSound(res["HitSong0"], false, true, 0);
-                            if (deltaTime > 0.08) {
-                                i.status2 = 7; //console.log("Good(Early)", i.name);
-                                clickEvents1.push(ClickEvent1.getClickGood(i.projectX, i.projectY));
-                                i.status3 = Date.now();
-                            } else if (deltaTime > 0.04) {
-                                i.status2 = 5; //console.log("Perfect(Early)", i.name);
-                                clickEvents1.push(hyperMode.checked ? ClickEvent1.getClickGreat(i.projectX, i.projectY) : ClickEvent1.getClickPerfect(i.projectX, i.projectY));
-                                i.status3 = Date.now();
-                            } else if (deltaTime > -0.04 || i.frameCount < 1) {
-                                i.status2 = 4; //console.log("Perfect(Max)", i.name);
-                                clickEvents1.push(ClickEvent1.getClickPerfect(i.projectX, i.projectY));
-                                i.status3 = Date.now();
-                            } else if (deltaTime > -0.08 || i.frameCount < 2) {
-                                i.status2 = 1; //console.log("Perfect(Late)", i.name);
-                                clickEvents1.push(hyperMode.checked ? ClickEvent1.getClickGreat(i.projectX, i.projectY) : ClickEvent1.getClickPerfect(i.projectX, i.projectY));
-                                i.status3 = Date.now();
-                            } else {
-                                i.status2 = 3; //console.log("Good(Late)", i.name);
-                                clickEvents1.push(ClickEvent1.getClickGood(i.projectX, i.projectY));
-                                i.status3 = Date.now();
-                            }
-                            this.splice(j, 1);
-                            i.status4 = false;
-                            i.status5 = deltaTime;
-                            break;
-                        }
-                    } else if (this[j].isInArea(i.offsetX, i.offsetY, i.cosr, i.sinr, width)) i.status4 = false;
-                }
-                if (!isPaused && i.status3 && i.status4) {
-                    i.status = 2; //console.log("Miss", i.name);
-                    stat.addCombo(2, 3);
-                    statDelta.push(NaN);
-                    i.scored = true;
-                }
-            } else if (i.type == 4) {
-                if (i.status == 4 && deltaTime < 0) {
-                    if (document.getElementById("hitSong").checked) playSound(res["HitSong2"], false, true, 0);
-                    clickEvents1.push(ClickEvent1.getClickPerfect(i.projectX, i.projectY));
-                    stat.addCombo(4, 4);
-                    statDelta.push(0);
-                    i.scored = true;
-                } else if (!i.status) {
-                    for (let j = 0; j < this.length; j++) {
-                        if (this[j].isInArea(i.offsetX, i.offsetY, i.cosr, i.sinr, width) && deltaTime < (hyperMode.checked ? 0.12 : 0.16) && (deltaTime > -(hyperMode.checked ? 0.12 : 0.16) || i.frameCount < (hyperMode.checked ? 3 : 4))) {
-                            //console.log("Perfect", i.name);
-                            this[j].catched = true;
-                            if (this[j].type == 3) {
-                                i.status = 4;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+	addJudgement(notes, realTime) {
+		this.length = 0;
+		if (autoplay.checked) {
+			for (const i of notes) {
+				const deltaTime = i.realTime - realTime;
+				if (i.scored) continue;
+				if (i.type == 1) {
+					if (deltaTime < 0.0) this.push(new Judgement(i.offsetX, i.offsetY, 1));
+				} else if (i.type == 2) {
+					if (deltaTime < 0.2) this.push(new Judgement(i.offsetX, i.offsetY, 2));
+				} else if (i.type == 3) {
+					if (i.status3) this.push(new Judgement(i.offsetX, i.offsetY, 2));
+					else if (deltaTime < 0.0) this.push(new Judgement(i.offsetX, i.offsetY, 1));
+				} else if (i.type == 4) {
+					if (deltaTime < 0.2) this.push(new Judgement(i.offsetX, i.offsetY, 3));
+				}
+			}
+		} else if (!isPaused) {
+			for (const j in mouse) {
+				const i = mouse[j];
+				if (i instanceof Click) {
+					if (i.time) this.push(new Judgement(i.offsetX, i.offsetY, 2));
+					else if (i.isMoving) this.push(new Judgement(i.offsetX, i.offsetY, 3));
+					//else this.push(new Judgement(i.offsetX, i.offsetY, 1));
+				}
+			}
+			for (const j in touch) {
+				const i = touch[j];
+				if (i instanceof Click) {
+					if (i.time) this.push(new Judgement(i.offsetX, i.offsetY, 2));
+					else if (i.isMoving) this.push(new Judgement(i.offsetX, i.offsetY, 3));
+					//else this.push(new Judgement(i.offsetX, i.offsetY, 1));
+				}
+			}
+			for (const j in keyboard) {
+				const i = keyboard[j];
+				if (i instanceof Click) {
+					if (i.time) this.push(new Judgement(i.offsetX, i.offsetY, 2));
+					else /*if (i.isMoving)*/ this.push(new Judgement(i.offsetX, i.offsetY, 3));
+					//else this.push(new Judgement(i.offsetX, i.offsetY, 1));
+				}
+			}
+			for (const i of taps) {
+				if (i instanceof Click) this.push(new Judgement(i.offsetX, i.offsetY, 1));
+			}
+		}
+	};
+	judgeNote(notes, realTime, width) {
+		for (const i of notes) {
+			const deltaTime = i.realTime - realTime;
+			if (i.scored) continue;
+			if ((deltaTime < -(hyperMode.checked ? 0.12 : 0.16) && i.frameCount > (hyperMode.checked ? 3 : 4)) && !i.status2) {
+				//console.log("Miss", i.name);
+				i.status = 2;
+				stat.addCombo(2, i.type);
+				statDelta.push(NaN);
+				i.scored = true;
+			} else if (i.type == 1) {
+				for (let j = 0; j < this.length; j++) {
+					if (this[j].type == 1 && this[j].isInArea(i.offsetX, i.offsetY, i.cosr, i.sinr, width) && deltaTime < 0.2 && (deltaTime > -(hyperMode.checked ? 0.12 : 0.16) || i.frameCount < (hyperMode.checked ? 3 : 4))) {
+						if (deltaTime > (hyperMode.checked ? 0.12 : 0.16)) {
+							if (!this[j].catched) {
+								i.status = 6; //console.log("Bad", i.name);
+								i.badtime = Date.now();
+							}
+						} else if (deltaTime > 0.08) {
+							i.status = 7; //console.log("Good(Early)", i.name);
+							if (document.getElementById("hitSong").checked) playSound(res["HitSong0"], false, true, 0);
+							clickEvents1.push(ClickEvent1.getClickGood(i.projectX, i.projectY));
+						} else if (deltaTime > 0.04) {
+							i.status = 5; //console.log("Perfect(Early)", i.name);
+							if (document.getElementById("hitSong").checked) playSound(res["HitSong0"], false, true, 0);
+							clickEvents1.push(hyperMode.checked ? ClickEvent1.getClickGreat(i.projectX, i.projectY) : ClickEvent1.getClickPerfect(i.projectX, i.projectY));
+						} else if (deltaTime > -0.04 || i.frameCount < 1) {
+							i.status = 4; //console.log("Perfect(Max)", i.name);
+							if (document.getElementById("hitSong").checked) playSound(res["HitSong0"], false, true, 0);
+							clickEvents1.push(ClickEvent1.getClickPerfect(i.projectX, i.projectY));
+						} else if (deltaTime > -0.08 || i.frameCount < 2) {
+							i.status = 1; //console.log("Perfect(Late)", i.name);
+							if (document.getElementById("hitSong").checked) playSound(res["HitSong0"], false, true, 0);
+							clickEvents1.push(hyperMode.checked ? ClickEvent1.getClickGreat(i.projectX, i.projectY) : ClickEvent1.getClickPerfect(i.projectX, i.projectY));
+						} else {
+							i.status = 3; //console.log("Good(Late)", i.name);
+							if (document.getElementById("hitSong").checked) playSound(res["HitSong0"], false, true, 0);
+							clickEvents1.push(ClickEvent1.getClickGood(i.projectX, i.projectY));
+						}
+						if (i.status) {
+							stat.addCombo(i.status, 1);
+							statDelta.push(deltaTime);
+							i.scored = true;
+							this.splice(j, 1);
+							break;
+						}
+					}
+				}
+			} else if (i.type == 2) {
+				if (i.status == 4 && deltaTime < 0) {
+					if (document.getElementById("hitSong").checked) playSound(res["HitSong1"], false, true, 0);
+					clickEvents1.push(ClickEvent1.getClickPerfect(i.projectX, i.projectY));
+					stat.addCombo(4, 2);
+					statDelta.push(0);
+					i.scored = true;
+				} else if (!i.status) {
+					for (let j = 0; j < this.length; j++) {
+						if (this[j].isInArea(i.offsetX, i.offsetY, i.cosr, i.sinr, width) && deltaTime < (hyperMode.checked ? 0.12 : 0.16) && (deltaTime > -(hyperMode.checked ? 0.12 : 0.16) || i.frameCount < (hyperMode.checked ? 3 : 4))) {
+							//console.log("Perfect", i.name);
+							this[j].catched = true;
+							i.status = 4;
+							break;
+						}
+					}
+				}
+			} else if (i.type == 3) {
+				if (i.status3) {
+					if ((Date.now() - i.status3) * i.holdTime >= 1.6e4 * i.realHoldTime) { //间隔时间与bpm成反比，待实测
+						if (i.status2 % 4 == 0) clickEvents1.push(ClickEvent1.getClickPerfect(i.projectX, i.projectY));
+						else if (i.status2 % 4 == 1) clickEvents1.push(hyperMode.checked ? ClickEvent1.getClickGreat(i.projectX, i.projectY) : ClickEvent1.getClickPerfect(i.projectX, i.projectY));
+						else if (i.status2 % 4 == 3) clickEvents1.push(ClickEvent1.getClickGood(i.projectX, i.projectY));
+						i.status3 = Date.now();
+					}
+					if (deltaTime + i.realHoldTime < 0.2) {
+						if (!i.status) {
+							stat.addCombo(i.status = i.status2, 3);
+							statDelta.push(i.status5);
+						}
+						if (deltaTime + i.realHoldTime < 0) i.scored = true;
+						continue;
+					}
+				}
+				i.status4 = true;
+				for (let j = 0; j < this.length; j++) {
+					if (!i.status3) {
+						if (this[j].type == 1 && this[j].isInArea(i.offsetX, i.offsetY, i.cosr, i.sinr, width) && deltaTime < (hyperMode.checked ? 0.12 : 0.16) && (deltaTime > -(hyperMode.checked ? 0.12 : 0.16) || i.frameCount < (hyperMode.checked ? 3 : 4))) {
+							if (document.getElementById("hitSong").checked) playSound(res["HitSong0"], false, true, 0);
+							if (deltaTime > 0.08) {
+								i.status2 = 7; //console.log("Good(Early)", i.name);
+								clickEvents1.push(ClickEvent1.getClickGood(i.projectX, i.projectY));
+								i.status3 = Date.now();
+							} else if (deltaTime > 0.04) {
+								i.status2 = 5; //console.log("Perfect(Early)", i.name);
+								clickEvents1.push(hyperMode.checked ? ClickEvent1.getClickGreat(i.projectX, i.projectY) : ClickEvent1.getClickPerfect(i.projectX, i.projectY));
+								i.status3 = Date.now();
+							} else if (deltaTime > -0.04 || i.frameCount < 1) {
+								i.status2 = 4; //console.log("Perfect(Max)", i.name);
+								clickEvents1.push(ClickEvent1.getClickPerfect(i.projectX, i.projectY));
+								i.status3 = Date.now();
+							} else if (deltaTime > -0.08 || i.frameCount < 2) {
+								i.status2 = 1; //console.log("Perfect(Late)", i.name);
+								clickEvents1.push(hyperMode.checked ? ClickEvent1.getClickGreat(i.projectX, i.projectY) : ClickEvent1.getClickPerfect(i.projectX, i.projectY));
+								i.status3 = Date.now();
+							} else {
+								i.status2 = 3; //console.log("Good(Late)", i.name);
+								clickEvents1.push(ClickEvent1.getClickGood(i.projectX, i.projectY));
+								i.status3 = Date.now();
+							}
+							this.splice(j, 1);
+							i.status4 = false;
+							i.status5 = deltaTime;
+							break;
+						}
+					} else if (this[j].isInArea(i.offsetX, i.offsetY, i.cosr, i.sinr, width)) i.status4 = false;
+				}
+				if (!isPaused && i.status3 && i.status4) {
+					i.status = 2; //console.log("Miss", i.name);
+					stat.addCombo(2, 3);
+					statDelta.push(NaN);
+					i.scored = true;
+				}
+			} else if (i.type == 4) {
+				if (i.status == 4 && deltaTime < 0) {
+					if (document.getElementById("hitSong").checked) playSound(res["HitSong2"], false, true, 0);
+					clickEvents1.push(ClickEvent1.getClickPerfect(i.projectX, i.projectY));
+					stat.addCombo(4, 4);
+					statDelta.push(0);
+					i.scored = true;
+				} else if (!i.status) {
+					for (let j = 0; j < this.length; j++) {
+						if (this[j].isInArea(i.offsetX, i.offsetY, i.cosr, i.sinr, width) && deltaTime < (hyperMode.checked ? 0.12 : 0.16) && (deltaTime > -(hyperMode.checked ? 0.12 : 0.16) || i.frameCount < (hyperMode.checked ? 3 : 4))) {
+							//console.log("Perfect", i.name);
+							this[j].catched = true;
+							if (this[j].type == 3) {
+								i.status = 4;
+								break;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
 const judgements = new Judgements();
 class ClickEvents extends Array {
-    defilter(func) {
-        var i = this.length;
-        while (i--) {
-            if (func(this[i])) this.splice(i, 1);
-        }
-        return this;
-    }
+	defilter(func) {
+		var i = this.length;
+		while (i--) {
+			if (func(this[i])) this.splice(i, 1);
+		}
+		return this;
+	}
 }
 const clickEvents0 = new ClickEvents(); //存放点击特效
 const clickEvents1 = new ClickEvents(); //存放点击特效
 class ClickEvent0 {
-    constructor(offsetX, offsetY, n1, n2) {
-        this.offsetX = Number(offsetX) || 0;
-        this.offsetY = Number(offsetY) || 0;
-        this.color = String(n1);
-        this.text = String(n2);
-        this.time = 0;
-    }
-    static getClickTap(offsetX, offsetY) {
-        //console.log("Tap", offsetX, offsetY);
-        return new ClickEvent0(offsetX, offsetY, "cyan", "");
-    }
-    static getClickHold(offsetX, offsetY) {
-        //console.log("Hold", offsetX, offsetY);
-        return new ClickEvent0(offsetX, offsetY, "lime", "");
-    }
-    static getClickMove(offsetX, offsetY) {
-        //console.log("Move", offsetX, offsetY);
-        return new ClickEvent0(offsetX, offsetY, "violet", "");
-    }
+	constructor(offsetX, offsetY, n1, n2) {
+		this.offsetX = Number(offsetX) || 0;
+		this.offsetY = Number(offsetY) || 0;
+		this.color = String(n1);
+		this.text = String(n2);
+		this.time = 0;
+	}
+	static getClickTap(offsetX, offsetY) {
+		//console.log("Tap", offsetX, offsetY);
+		return new ClickEvent0(offsetX, offsetY, "cyan", "");
+	}
+	static getClickHold(offsetX, offsetY) {
+		//console.log("Hold", offsetX, offsetY);
+		return new ClickEvent0(offsetX, offsetY, "lime", "");
+	}
+	static getClickMove(offsetX, offsetY) {
+		//console.log("Move", offsetX, offsetY);
+		return new ClickEvent0(offsetX, offsetY, "violet", "");
+	}
 }
 class ClickEvent1 {
-    constructor(offsetX, offsetY, n1, n2, n3) {
-        this.offsetX = Number(offsetX) || 0;
-        this.offsetY = Number(offsetY) || 0;
-        this.time = Date.now();
-        this.duration = 500;
-        this.images = res["Clicks"][n1]; //以后做缺少检测
-        this.color = String(n3);
-        this.rand = Array(Number(n2) || 0).fill().map(() => [Math.random() * 80 + 185, Math.random() * 2 * Math.PI]);
-    }
-    static getClickPerfect(offsetX, offsetY) {
-        return new ClickEvent1(offsetX, offsetY, "rgba(255,236,160,0.8823529)", 4, "#ffeca0");
-    }
-    static getClickGreat(offsetX, offsetY) {
-        return new ClickEvent1(offsetX, offsetY, "rgba(168,255,177,0.9016907)", 4, "#a8ffb1");
-    }
-    static getClickGood(offsetX, offsetY) {
-        return new ClickEvent1(offsetX, offsetY, "rgba(180,225,255,0.9215686)", 3, "#b4e1ff");
-    }
+	constructor(offsetX, offsetY, n1, n2, n3) {
+		this.offsetX = Number(offsetX) || 0;
+		this.offsetY = Number(offsetY) || 0;
+		this.time = Date.now();
+		this.duration = 500;
+		this.images = res["Clicks"][n1]; //以后做缺少检测
+		this.color = String(n3);
+		this.rand = Array(Number(n2) || 0).fill().map(() => [Math.random() * 80 + 185, Math.random() * 2 * Math.PI]);
+	}
+	static getClickPerfect(offsetX, offsetY) {
+		return new ClickEvent1(offsetX, offsetY, "rgba(255,236,160,0.8823529)", 4, "#ffeca0");
+	}
+	static getClickGreat(offsetX, offsetY) {
+		return new ClickEvent1(offsetX, offsetY, "rgba(168,255,177,0.9016907)", 4, "#a8ffb1");
+	}
+	static getClickGood(offsetX, offsetY) {
+		return new ClickEvent1(offsetX, offsetY, "rgba(180,225,255,0.9215686)", 3, "#b4e1ff");
+	}
 }
 //适配PC鼠标
 const isMouseDown = {};
 canvas.addEventListener("mousedown", function(evt) {
-    evt.preventDefault();
-    const idx = evt.button;
-    const dx = (evt.pageX - getOffsetLeft(this)) / this.offsetWidth * this.width - (this.width - canvasos.width) / 2;
-    const dy = (evt.pageY - getOffsetTop(this)) / this.offsetHeight * this.height;
-    mouse[idx] = Click.activate(dx, dy);
-    isMouseDown[idx] = true;
+	evt.preventDefault();
+	const idx = evt.button;
+	const dx = (evt.pageX - getOffsetLeft(this)) / this.offsetWidth * this.width - (this.width - canvasos.width) / 2;
+	const dy = (evt.pageY - getOffsetTop(this)) / this.offsetHeight * this.height;
+	mouse[idx] = Click.activate(dx, dy);
+	isMouseDown[idx] = true;
 });
 canvas.addEventListener("mousemove", function(evt) {
-    evt.preventDefault();
-    for (const idx in isMouseDown) {
-        if (isMouseDown[idx]) {
-            const dx = (evt.pageX - getOffsetLeft(this)) / this.offsetWidth * this.width - (this.width - canvasos.width) / 2;
-            const dy = (evt.pageY - getOffsetTop(this)) / this.offsetHeight * this.height;
-            mouse[idx].move(dx, dy);
-        }
-    }
+	evt.preventDefault();
+	for (const idx in isMouseDown) {
+		if (isMouseDown[idx]) {
+			const dx = (evt.pageX - getOffsetLeft(this)) / this.offsetWidth * this.width - (this.width - canvasos.width) / 2;
+			const dy = (evt.pageY - getOffsetTop(this)) / this.offsetHeight * this.height;
+			mouse[idx].move(dx, dy);
+		}
+	}
 });
 canvas.addEventListener("mouseup", function(evt) {
-    evt.preventDefault();
-    const idx = evt.button;
-    delete mouse[idx];
-    delete isMouseDown[idx];
+	evt.preventDefault();
+	const idx = evt.button;
+	delete mouse[idx];
+	delete isMouseDown[idx];
 });
 canvas.addEventListener("mouseout", function(evt) {
-    evt.preventDefault();
-    for (const idx in isMouseDown) {
-        if (isMouseDown[idx]) {
-            delete mouse[idx];
-            delete isMouseDown[idx];
-        }
-    }
+	evt.preventDefault();
+	for (const idx in isMouseDown) {
+		if (isMouseDown[idx]) {
+			delete mouse[idx];
+			delete isMouseDown[idx];
+		}
+	}
 });
 //适配键盘(喵喵喵?)
 window.addEventListener("keydown", function(evt) {
-    if (document.activeElement.classList.value == "input") return;
-    if (btnPlay.value != "停止") return;
-    evt.preventDefault();
-    if (evt.key == "Shift") btnPause.click();
-    else if (keyboard[evt.code] instanceof Click);
-    else keyboard[evt.code] = Click.activate(NaN, NaN);
+	if (document.activeElement.classList.value == "input") return;
+	if (btnPlay.value != "停止") return;
+	evt.preventDefault();
+	if (evt.key == "Shift") btnPause.click();
+	else if (keyboard[evt.code] instanceof Click);
+	else keyboard[evt.code] = Click.activate(NaN, NaN);
 }, false);
 window.addEventListener("keyup", function(evt) {
-    if (document.activeElement.classList.value == "input") return;
-    if (btnPlay.value != "停止") return;
-    evt.preventDefault();
-    if (evt.key == "Shift");
-    else if (keyboard[evt.code] instanceof Click) delete keyboard[evt.code];
+	if (document.activeElement.classList.value == "input") return;
+	if (btnPlay.value != "停止") return;
+	evt.preventDefault();
+	if (evt.key == "Shift");
+	else if (keyboard[evt.code] instanceof Click) delete keyboard[evt.code];
 }, false);
 window.addEventListener("blur", () => {
-    for (const i in keyboard) delete keyboard[i]; //失去焦点清除键盘事件
+	for (const i in keyboard) delete keyboard[i]; //失去焦点清除键盘事件
 });
 //适配移动设备
 const passive = {
-    passive: false
+	passive: false
 }; //不加这玩意会出现warning
 canvas.addEventListener("touchstart", function(evt) {
-    evt.preventDefault();
-    for (const i of evt.changedTouches) {
-        const idx = i.identifier; //移动端存在多押bug(可能已经解决了？)
-        const dx = (i.pageX - getOffsetLeft(this)) / this.offsetWidth * this.width - (this.width - canvasos.width) / 2;
-        const dy = (i.pageY - getOffsetTop(this)) / this.offsetHeight * this.height;
-        touch[idx] = Click.activate(dx, dy);
-    }
+	evt.preventDefault();
+	for (const i of evt.changedTouches) {
+		const idx = i.identifier; //移动端存在多押bug(可能已经解决了？)
+		const dx = (i.pageX - getOffsetLeft(this)) / this.offsetWidth * this.width - (this.width - canvasos.width) / 2;
+		const dy = (i.pageY - getOffsetTop(this)) / this.offsetHeight * this.height;
+		touch[idx] = Click.activate(dx, dy);
+	}
 }, passive);
 canvas.addEventListener("touchmove", function(evt) {
-    evt.preventDefault();
-    for (const i of evt.changedTouches) {
-        const idx = i.identifier;
-        const dx = (i.pageX - getOffsetLeft(this)) / this.offsetWidth * this.width - (this.width - canvasos.width) / 2;
-        const dy = (i.pageY - getOffsetTop(this)) / this.offsetHeight * this.height;
-        touch[idx].move(dx, dy);
-    }
+	evt.preventDefault();
+	for (const i of evt.changedTouches) {
+		const idx = i.identifier;
+		const dx = (i.pageX - getOffsetLeft(this)) / this.offsetWidth * this.width - (this.width - canvasos.width) / 2;
+		const dy = (i.pageY - getOffsetTop(this)) / this.offsetHeight * this.height;
+		touch[idx].move(dx, dy);
+	}
 }, passive);
 canvas.addEventListener("touchend", function(evt) {
-    evt.preventDefault();
-    for (const i of evt.changedTouches) {
-        const idx = i.identifier;
-        delete touch[idx];
-    }
+	evt.preventDefault();
+	for (const i of evt.changedTouches) {
+		const idx = i.identifier;
+		delete touch[idx];
+	}
 });
 canvas.addEventListener("touchcancel", function(evt) {
-    evt.preventDefault();
-    for (const i of evt.changedTouches) {
-        const idx = i.identifier;
-        delete touch[idx];
-    }
+	evt.preventDefault();
+	for (const i of evt.changedTouches) {
+		const idx = i.identifier;
+		delete touch[idx];
+	}
 });
 //优化触摸定位，以后整合进class
 function getOffsetLeft(element) {
-    if (!(element instanceof HTMLElement)) return NaN;
-    if (full.check(element)) return document.documentElement.scrollLeft;
-    let elem = element;
-    let a = 0;
-    while (elem instanceof HTMLElement) {
-        a += elem.offsetLeft;
-        elem = elem.offsetParent;
-    }
-    return a;
+	if (!(element instanceof HTMLElement)) return NaN;
+	if (full.check(element)) return document.documentElement.scrollLeft;
+	let elem = element;
+	let a = 0;
+	while (elem instanceof HTMLElement) {
+		a += elem.offsetLeft;
+		elem = elem.offsetParent;
+	}
+	return a;
 }
 
 function getOffsetTop(element) {
-    if (!(element instanceof HTMLElement)) return NaN;
-    if (full.check(element)) return document.documentElement.scrollTop;
-    let elem = element;
-    let a = 0;
-    while (elem instanceof HTMLElement) {
-        a += elem.offsetTop;
-        elem = elem.offsetParent;
-    }
-    return a;
+	if (!(element instanceof HTMLElement)) return NaN;
+	if (full.check(element)) return document.documentElement.scrollTop;
+	let elem = element;
+	let a = 0;
+	while (elem instanceof HTMLElement) {
+		a += elem.offsetTop;
+		elem = elem.offsetParent;
+	}
+	return a;
 }
 //声音组件
 const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -668,13 +668,13 @@ const actx = (new Audio()).canPlayType("audio/ogg") == "" ? new oggmented.Oggmen
 const stopPlaying = [];
 const gain = actx.createGain();
 const playSound = (res, loop, isOut, offset) => {
-    const bufferSource = actx.createBufferSource();
-    bufferSource.buffer = res;
-    bufferSource.loop = loop; //循环播放
-    bufferSource.connect(gain);
-    if (isOut) gain.connect(actx.destination);
-    bufferSource.start(0, offset);
-    return () => bufferSource.stop();
+	const bufferSource = actx.createBufferSource();
+	bufferSource.buffer = res;
+	bufferSource.loop = loop; //循环播放
+	bufferSource.connect(gain);
+	if (isOut) gain.connect(actx.destination);
+	bufferSource.start(0, offset);
+	return () => bufferSource.stop();
 }
 const res = {}; //存放资源
 resizeCanvas();
@@ -682,191 +682,191 @@ uploads.classList.add("disabled");
 select.classList.add("disabled");
 //初始化
 window.onload = function() {
-    //加载资源
-    (async function() {
-        let loadedNum = 0;
-        await Promise.all((obj => {
-            const arr = [];
-            for (const i in obj) arr.push([i, obj[i]]);
-            return arr;
-        })({
-            JudgeLine: "src/JudgeLine.png",
-            ProgressBar: "src/ProgressBar.png",
-            SongsNameBar: "src/SongsNameBar.png",
-            Pause: "src/Pause.png",
-            clickRaw: "src/clickRaw.png",
-            Tap: "src/Tap.png",
-            Tap2: "src/Tap2.png",
-            TapHL: "src/TapHL.png",
-            Drag: "src/Drag.png",
-            DragHL: "src/DragHL.png",
-            HoldHead: "src/HoldHead.png",
-            HoldHeadHL: "src/HoldHeadHL.png",
-            Hold: "src/Hold.png",
-            HoldHL: "src/HoldHL.png",
-            HoldEnd: "src/HoldEnd.png",
-            Flick: "src/Flick.png",
-            FlickHL: "src/FlickHL.png",
-            LevelOver1: "src/LevelOver1.png",
-            LevelOver3: "src/LevelOver3.png",
-            LevelOver4: "src/LevelOver4.png",
-            LevelOver5: "src/LevelOver5.png",
-            Rank: "src/Rank.png",
-            NoImage: "src/0.png",
-            mute: "src/mute.ogg",
-            HitSong0: "src/HitSong0.ogg",
-            HitSong1: "src/HitSong1.ogg",
-            HitSong2: "src/HitSong2.ogg"
-        }).map(([name, src], _i, arr) => {
-            const xhr = new XMLHttpRequest();
-            xhr.open("get", src, true);
-            xhr.responseType = 'arraybuffer';
-            xhr.send();
-            return new Promise(resolve => {
-                xhr.onload = async() => {
-                    if (/\.(mp3|wav|ogg)$/i.test(src)) res[name] = await actx.decodeAudioData(xhr.response);
-                    else if (/\.(png|jpeg|jpg)$/i.test(src)) res[name] = await createImageBitmap(new Blob([xhr.response]));
-                    message.sendMessage(`加载资源：${Math.floor(++loadedNum / arr.length * 100)}%`);
-                    resolve();
-                };
-            });
-        }));
-        res["JudgeLineMP"] = await createImageBitmap(imgShader(res["JudgeLine"], "#feffa9"));
-        res["JudgeLineAP"] = await createImageBitmap(imgShader(res["JudgeLine"], "#a3ffac"));
-        res["JudgeLineFC"] = await createImageBitmap(imgShader(res["JudgeLine"], "#a2eeff"));
-        res["TapBad"] = await createImageBitmap(imgShader(res["Tap2"], "#6c4343"));
-        res["Clicks"] = {};
-        //res["Clicks"].default = await qwqImage(res["clickRaw"], "white");
-        res["Ranks"] = await qwqImage(res["Rank"], "white");
-        res["Clicks"]["rgba(255,236,160,0.8823529)"] = await qwqImage(res["clickRaw"], "rgba(255,236,160,0.8823529)"); //#fce491
-        res["Clicks"]["rgba(168,255,177,0.9016907)"] = await qwqImage(res["clickRaw"], "rgba(168,255,177,0.9016907)"); //#97f79d
-        res["Clicks"]["rgba(180,225,255,0.9215686)"] = await qwqImage(res["clickRaw"], "rgba(180,225,255,0.9215686)"); //#9ed5f3
-        message.sendMessage("等待上传文件...");
-        upload.parentElement.classList.remove("disabled");
-    })();
+	//加载资源
+	(async function() {
+		let loadedNum = 0;
+		await Promise.all((obj => {
+			const arr = [];
+			for (const i in obj) arr.push([i, obj[i]]);
+			return arr;
+		})({
+			JudgeLine: "src/JudgeLine.png",
+			ProgressBar: "src/ProgressBar.png",
+			SongsNameBar: "src/SongsNameBar.png",
+			Pause: "src/Pause.png",
+			clickRaw: "src/clickRaw.png",
+			Tap: "src/Tap.png",
+			Tap2: "src/Tap2.png",
+			TapHL: "src/TapHL.png",
+			Drag: "src/Drag.png",
+			DragHL: "src/DragHL.png",
+			HoldHead: "src/HoldHead.png",
+			HoldHeadHL: "src/HoldHeadHL.png",
+			Hold: "src/Hold.png",
+			HoldHL: "src/HoldHL.png",
+			HoldEnd: "src/HoldEnd.png",
+			Flick: "src/Flick.png",
+			FlickHL: "src/FlickHL.png",
+			LevelOver1: "src/LevelOver1.png",
+			LevelOver3: "src/LevelOver3.png",
+			LevelOver4: "src/LevelOver4.png",
+			LevelOver5: "src/LevelOver5.png",
+			Rank: "src/Rank.png",
+			NoImage: "src/0.png",
+			mute: "src/mute.ogg",
+			HitSong0: "src/HitSong0.ogg",
+			HitSong1: "src/HitSong1.ogg",
+			HitSong2: "src/HitSong2.ogg"
+		}).map(([name, src], _i, arr) => {
+			const xhr = new XMLHttpRequest();
+			xhr.open("get", src, true);
+			xhr.responseType = 'arraybuffer';
+			xhr.send();
+			return new Promise(resolve => {
+				xhr.onload = async () => {
+					if (/\.(mp3|wav|ogg)$/i.test(src)) res[name] = await actx.decodeAudioData(xhr.response);
+					else if (/\.(png|jpeg|jpg)$/i.test(src)) res[name] = await createImageBitmap(new Blob([xhr.response]));
+					message.sendMessage(`加载资源：${Math.floor(++loadedNum / arr.length * 100)}%`);
+					resolve();
+				};
+			});
+		}));
+		res["JudgeLineMP"] = await createImageBitmap(imgShader(res["JudgeLine"], "#feffa9"));
+		res["JudgeLineAP"] = await createImageBitmap(imgShader(res["JudgeLine"], "#a3ffac"));
+		res["JudgeLineFC"] = await createImageBitmap(imgShader(res["JudgeLine"], "#a2eeff"));
+		res["TapBad"] = await createImageBitmap(imgShader(res["Tap2"], "#6c4343"));
+		res["Clicks"] = {};
+		//res["Clicks"].default = await qwqImage(res["clickRaw"], "white");
+		res["Ranks"] = await qwqImage(res["Rank"], "white");
+		res["Clicks"]["rgba(255,236,160,0.8823529)"] = await qwqImage(res["clickRaw"], "rgba(255,236,160,0.8823529)"); //#fce491
+		res["Clicks"]["rgba(168,255,177,0.9016907)"] = await qwqImage(res["clickRaw"], "rgba(168,255,177,0.9016907)"); //#97f79d
+		res["Clicks"]["rgba(180,225,255,0.9215686)"] = await qwqImage(res["clickRaw"], "rgba(180,225,255,0.9215686)"); //#9ed5f3
+		message.sendMessage("等待上传文件...");
+		upload.parentElement.classList.remove("disabled");
+	})();
 }
 async function qwqImage(img, color) {
-    const clickqwq = imgShader(img, color);
-    const arr = [];
-    const min = Math.min(img.width, img.height);
-    const max = Math.max(img.width, img.height);
-    for (let i = 0; i < parseInt(max / min); i++) arr[i] = await createImageBitmap(clickqwq, 0, i * min, min, min);
-    return arr;
+	const clickqwq = imgShader(img, color);
+	const arr = [];
+	const min = Math.min(img.width, img.height);
+	const max = Math.max(img.width, img.height);
+	for (let i = 0; i < parseInt(max / min); i++) arr[i] = await createImageBitmap(clickqwq, 0, i * min, min, min);
+	return arr;
 }
 //必要组件
 let stopDrawing;
 const stat = {
-        noteRank: [0, 0, 0, 0, 0, 0, 0, 0],
-        combos: [0, 0, 0, 0, 0],
-        maxcombo: 0,
-        combo: 0,
-        get good() {
-            return this.noteRank[7] + this.noteRank[3];
-        },
-        get bad() {
-            return this.noteRank[6] + this.noteRank[2];
-        },
-        get great() {
-            return this.noteRank[5] + this.noteRank[1];
-        },
-        get perfect() {
-            return this.noteRank[4] + this.great;
-        },
-        get all() {
-            return this.perfect + this.good + this.bad;
-        },
-        get scoreNum() {
-            const a = 1e6 * (this.perfect * 0.9 + this.good * 0.585 + this.maxcombo * 0.1) / this.numOfNotes;
-            const b = 1e6 * (this.noteRank[4] + this.great * 0.65 + this.good * 0.35) / this.numOfNotes;
-            return hyperMode.checked ? (isFinite(b) ? b : 0) : (isFinite(a) ? a : 0);
-        },
-        get scoreStr() {
-            const a = this.scoreNum.toFixed(0);
-            return ("0").repeat(a.length < 7 ? 7 - a.length : 0) + a;
-        },
-        get accNum() {
-            const a = (this.perfect + this.good * 0.65) / this.all;
-            const b = (this.noteRank[4] + this.great * 0.65 + this.good * 0.35) / this.all;
-            return hyperMode.checked ? (isFinite(b) ? b : 0) : (isFinite(a) ? a : 0);
-        },
-        get accStr() {
-            return (100 * this.accNum).toFixed(2) + "%";
-        },
-        get lineStatus() {
-            if (this.bad) return 0;
-            if (this.good) return 3;
-            if (this.great && hyperMode.checked) return 2;
-            return 1;
-        },
-        get rankStatus() {
-            const a = Math.round(this.scoreNum);
-            if (a >= 1e6) return 0;
-            if (a >= 9.6e5) return 1;
-            if (a >= 9.2e5) return 2;
-            if (a >= 8.8e5) return 3;
-            if (a >= 8.2e5) return 4;
-            if (a >= 7e5) return 5;
-            return 6;
-        },
-        get localData() {
-            const l1 = Math.round(this.accNum * 1e4 + 566).toString(22).slice(-3);
-            const l2 = Math.round(this.scoreNum + 40672).toString(32).slice(-4);
-            const l3 = (Number(inputLevel.value.match(/\d+$/))).toString(36).slice(-1);
-            return l1 + l2 + l3;
-        },
-        getData(isAuto) {
-            const s1 = this.data[this.id].slice(0, 3);
-            const s2 = this.data[this.id].slice(3, 7);
-            const l1 = Math.round(this.accNum * 1e4 + 566).toString(22).slice(-3);
-            const l2 = Math.round(this.scoreNum + 40672).toString(32).slice(-4);
-            const l3 = (Number(inputLevel.value.match(/\d+$/))).toString(36).slice(-1);
-            const a = (parseInt(s2, 32) - 40672).toFixed(0);
-            const scoreBest = ("0").repeat(a.length < 7 ? 7 - a.length : 0) + a;
-            if (!isAuto) this.data[this.id] = (s1 > l1 ? s1 : l1) + (s2 > l2 ? s2 : l2) + l3;
-            const arr = [];
-            for (const i in this.data) arr.push(i + this.data[i]);
-            localStorage.setItem("phi", arr.sort(() => Math.random() - 0.5).join(""));
-            if (isAuto) return [false, scoreBest, "", true];
-            return [s2 < l2, scoreBest, (s2 > l2 ? "- " : "+ ") + Math.abs(scoreBest - this.scoreStr), false];
-        },
-        reset(numOfNotes, id) {
-            this.numOfNotes = Number(numOfNotes) || 0;
-            this.combo = 0;
-            this.maxcombo = 0;
-            this.noteRank = [0, 0, 0, 0, 0, 0, 0, 0]; //4:PM,5:PE,1:PL,7:GE,3:GL,6:BE,2:BL
-            this.combos = [0, 0, 0, 0, 0]; //不同种类note实时连击次数
-            this.data = {};
-            if (localStorage.getItem("phi") == null) localStorage.setItem("phi", ""); //初始化存储
-            const str = localStorage.getItem("phi");
-            for (let i = 0; i < parseInt(str.length / 40); i++) {
-                const data = str.slice(i * 40, i * 40 + 40);
-                this.data[data.slice(0, 32)] = data.slice(-8);
-            }
-            if (id) {
-                if (!this.data[id]) this.data[id] = this.localData;
-                this.id = id;
-            }
-        },
-        addCombo(status, type) {
-            this.noteRank[status]++;
-            this.combo = status % 4 == 2 ? 0 : this.combo + 1;
-            if (this.combo > this.maxcombo) this.maxcombo = this.combo;
-            this.combos[0]++;
-            this.combos[type]++;
-        }
-    }
-    //const stat = new Stat();
+	noteRank: [0, 0, 0, 0, 0, 0, 0, 0],
+	combos: [0, 0, 0, 0, 0],
+	maxcombo: 0,
+	combo: 0,
+	get good() {
+		return this.noteRank[7] + this.noteRank[3];
+	},
+	get bad() {
+		return this.noteRank[6] + this.noteRank[2];
+	},
+	get great() {
+		return this.noteRank[5] + this.noteRank[1];
+	},
+	get perfect() {
+		return this.noteRank[4] + this.great;
+	},
+	get all() {
+		return this.perfect + this.good + this.bad;
+	},
+	get scoreNum() {
+		const a = 1e6 * (this.perfect * 0.9 + this.good * 0.585 + this.maxcombo * 0.1) / this.numOfNotes;
+		const b = 1e6 * (this.noteRank[4] + this.great * 0.65 + this.good * 0.35) / this.numOfNotes;
+		return hyperMode.checked ? (isFinite(b) ? b : 0) : (isFinite(a) ? a : 0);
+	},
+	get scoreStr() {
+		const a = this.scoreNum.toFixed(0);
+		return ("0").repeat(a.length < 7 ? 7 - a.length : 0) + a;
+	},
+	get accNum() {
+		const a = (this.perfect + this.good * 0.65) / this.all;
+		const b = (this.noteRank[4] + this.great * 0.65 + this.good * 0.35) / this.all;
+		return hyperMode.checked ? (isFinite(b) ? b : 0) : (isFinite(a) ? a : 0);
+	},
+	get accStr() {
+		return (100 * this.accNum).toFixed(2) + "%";
+	},
+	get lineStatus() {
+		if (this.bad) return 0;
+		if (this.good) return 3;
+		if (this.great && hyperMode.checked) return 2;
+		return 1;
+	},
+	get rankStatus() {
+		const a = Math.round(this.scoreNum);
+		if (a >= 1e6) return 0;
+		if (a >= 9.6e5) return 1;
+		if (a >= 9.2e5) return 2;
+		if (a >= 8.8e5) return 3;
+		if (a >= 8.2e5) return 4;
+		if (a >= 7e5) return 5;
+		return 6;
+	},
+	get localData() {
+		const l1 = Math.round(this.accNum * 1e4 + 566).toString(22).slice(-3);
+		const l2 = Math.round(this.scoreNum + 40672).toString(32).slice(-4);
+		const l3 = (Number(inputLevel.value.match(/\d+$/))).toString(36).slice(-1);
+		return l1 + l2 + l3;
+	},
+	getData(isAuto) {
+		const s1 = this.data[this.id].slice(0, 3);
+		const s2 = this.data[this.id].slice(3, 7);
+		const l1 = Math.round(this.accNum * 1e4 + 566).toString(22).slice(-3);
+		const l2 = Math.round(this.scoreNum + 40672).toString(32).slice(-4);
+		const l3 = (Number(inputLevel.value.match(/\d+$/))).toString(36).slice(-1);
+		const a = (parseInt(s2, 32) - 40672).toFixed(0);
+		const scoreBest = ("0").repeat(a.length < 7 ? 7 - a.length : 0) + a;
+		if (!isAuto) this.data[this.id] = (s1 > l1 ? s1 : l1) + (s2 > l2 ? s2 : l2) + l3;
+		const arr = [];
+		for (const i in this.data) arr.push(i + this.data[i]);
+		localStorage.setItem("phi", arr.sort(() => Math.random() - 0.5).join(""));
+		if (isAuto) return [false, scoreBest, "", true];
+		return [s2 < l2, scoreBest, (s2 > l2 ? "- " : "+ ") + Math.abs(scoreBest - this.scoreStr), false];
+	},
+	reset(numOfNotes, id) {
+		this.numOfNotes = Number(numOfNotes) || 0;
+		this.combo = 0;
+		this.maxcombo = 0;
+		this.noteRank = [0, 0, 0, 0, 0, 0, 0, 0]; //4:PM,5:PE,1:PL,7:GE,3:GL,6:BE,2:BL
+		this.combos = [0, 0, 0, 0, 0]; //不同种类note实时连击次数
+		this.data = {};
+		if (localStorage.getItem("phi") == null) localStorage.setItem("phi", ""); //初始化存储
+		const str = localStorage.getItem("phi");
+		for (let i = 0; i < parseInt(str.length / 40); i++) {
+			const data = str.slice(i * 40, i * 40 + 40);
+			this.data[data.slice(0, 32)] = data.slice(-8);
+		}
+		if (id) {
+			if (!this.data[id]) this.data[id] = this.localData;
+			this.id = id;
+		}
+	},
+	addCombo(status, type) {
+		this.noteRank[status]++;
+		this.combo = status % 4 == 2 ? 0 : this.combo + 1;
+		if (this.combo > this.maxcombo) this.maxcombo = this.combo;
+		this.combos[0]++;
+		this.combos[type]++;
+	}
+}
+//const stat = new Stat();
 const comboColor = ["#fff", "#0ac3ff", "#f0ed69", "#a0e9fd", "#fe4365"];
 //读取文件
 upload.onchange = function() {
-    const file = this.files[0];
-    document.getElementById("filename").value = file ? file.name : "";
-    if (!file) {
-        message.sendError("未选择任何文件");
-        return;
-    }
-    uploads.classList.add("disabled");
-    loadFile(file);
+	const file = this.files[0];
+	document.getElementById("filename").value = file ? file.name : "";
+	if (!file) {
+		message.sendError("未选择任何文件");
+		return;
+	}
+	uploads.classList.add("disabled");
+	loadFile(file);
 }
 const time2Str = time => `${parseInt(time / 60)}:${`00${parseInt(time % 60)}`.slice(-2)}`;
 const frameTimer = { //计算fps
@@ -1286,7 +1286,7 @@ function loop() {
 	ctx.globalAlpha = 0.8;
 	ctx.textAlign = "right";
 	ctx.textBaseline = "middle";
-	ctx.fillText(`Phigros Simulator v${_i[1].join('.')} - Code by Jerrywu`, (canvas.width + canvasos.width) / 2 - lineScale * 0.1, canvas.height - lineScale * 0.2);
+	ctx.fillText(`Phigros Simulator v${_i[1].join('.')} - Code by lch\x7ah3473`, (canvas.width + canvasos.width) / 2 - lineScale * 0.1, canvas.height - lineScale * 0.2);
 	stopDrawing = requestAnimationFrame(loop); //回调更新动画
 }
 
